@@ -22,6 +22,14 @@ CREATE TABLE IF NOT EXISTS exercises_equipment (
     exercise_id INTEGER,
     equipment_id INTEGER
 );
+
+INSERT INTO categories (name)
+VALUES
+('Upper Body'),
+('Lower Body'),
+('Core / Abdominal'),
+('Full Body'),
+('Cardiovascular');
 `;
 
 async function main() {
