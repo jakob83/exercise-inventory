@@ -1,0 +1,9 @@
+<div class="exercices">
+    <% if (locals.exercises) {%> <% exercises.forEach(exercise => { %>
+            <div class="exercice-container">
+                <h3><%= exercise.exercise %></h3>
+                <p>Category: <%= exercise.category %></p>
+                <%- include("partials/equipmentList", {exercise: exercise}) %>
+            </div>
+    <% }); %> <% } %>        
+</div>
