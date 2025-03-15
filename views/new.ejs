@@ -1,0 +1,24 @@
+<head>
+    <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <form action="new" method="post" class="new-exercise-form">
+        <label for="exercise">Exercise:</label>
+        <input type="text" name="exercise" id="exercise" required>
+        <label for="category">Category:</label>
+        <select name="category" id="category"required>
+            <% categories.forEach((c) => { %>
+                <option value="<%= c.name %>"><%= c.name %></option>
+            <% }) %>
+        </select>
+        <label for="equipment">Equipment:</label>
+        <select name="equipment" id="equipment" multiple required>
+            <% equipment.forEach((e) => { %>
+                <option value="<%= e.name %>"><%= e.name %></option>
+            <% }) %>
+        </select>
+        <label for="img">Image:</label>
+        <input type="file" id="img">
+        <button type="submit">Submit</button>
+    </form>
+</body>

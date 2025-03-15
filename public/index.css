@@ -1,3 +1,10 @@
+:root {
+  font-size: 16px;
+}
+body {
+  position: relative;
+}
+
 .exercise-container {
   display: flex;
   flex-direction: column;
@@ -8,4 +15,29 @@
   width: 300px;
   object-fit: cover;
   object-position: left top;
+}
+
+.new-exercise-form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: max(400px, 30%);
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.new-exercise-form input {
+  padding: 10px 10px;
+  font-size: 1rem;
+}
+
+.new-exercise-form select {
+  padding: 10px 10px;
+  font-size: 1rem;
+}
+.new-exercise-form button {
+  padding: 10px 30px;
+  font-size: 1rem;
+  align-self: center;
 }

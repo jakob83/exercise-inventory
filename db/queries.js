@@ -8,4 +8,13 @@ async function getCompleteExercises() {
   return rows;
 }
 
-module.exports = { getCompleteExercises };
+async function getCategories() {
+  const { rows } = await pool.query(`SELECT name FROM categories;`);
+  return rows;
+}
+async function getEquipment() {
+  const { rows } = await pool.query(`SELECT name FROM equipment;`);
+  return rows;
+}
+
+module.exports = { getCompleteExercises, getCategories, getEquipment };

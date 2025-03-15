@@ -1,8 +1,8 @@
 const { body, validationResult } = require('express-validator');
-const querys = require('../db/queries');
+const queries = require('../db/queries');
 
-exports.usersListGET = async (req, res) => {
-  const rows = await querys.getCompleteExercises();
+exports.exercisesGET = async (req, res) => {
+  const rows = await queries.getCompleteExercises();
   let exercises = [];
   rows.forEach((row) => {
     if (
@@ -20,4 +20,10 @@ exports.usersListGET = async (req, res) => {
     }
   });
   res.render('exercises', { exercises: exercises });
+};
+
+exports.exerciseNewGET = async (req, res) => {
+  const catRows = await queries.getCategories();
+  const eqRows = await queries.getEquipment();
+  res.render('new', { categories: catRows, equipment: eqRows });
 };
