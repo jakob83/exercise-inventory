@@ -2,14 +2,14 @@ require('dotenv').config();
 
 const { Client } = require('pg');
 const SQL = `
-INSERT INTO exercises (name, category_id)
+INSERT INTO exercises (name, category_id, img)
 VALUES
-('Push Ups', (SELECT id FROM categories WHERE name = 'Upper Body')),
-('Pull Ups', (SELECT id FROM categories WHERE name = 'Upper Body')),
-('Running', (SELECT id FROM categories WHERE name = 'Cardiovascular')),
-('Squats', (SELECT id FROM categories WHERE name = 'Lower Body')),
-('Burpees', (SELECT id FROM categories WHERE name = 'Full Body')),
-('Russian Twists', (SELECT id FROM categories WHERE name = 'Core / Abdominal'));
+('Push Ups', (SELECT id FROM categories WHERE name = 'Upper Body'), '/uploads/pushup.jpg'),
+('Pull Ups', (SELECT id FROM categories WHERE name = 'Upper Body'), '/uploads/pullup.jpg'),
+('Running', (SELECT id FROM categories WHERE name = 'Cardiovascular'), '/uploads/running.jpg'),
+('Squats', (SELECT id FROM categories WHERE name = 'Lower Body'), '/uploads/squat.jpg'),
+('Burpees', (SELECT id FROM categories WHERE name = 'Full Body'), '/uploads/burpee.jpg'),
+('Russian Twists', (SELECT id FROM categories WHERE name = 'Core / Abdominal'), '/uploads/twist.jpg');
 
 INSERT INTO equipment (name)
 VALUES

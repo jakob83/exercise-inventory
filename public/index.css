@@ -1,0 +1,11 @@
+.exercise-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.exercise-container img {
+  height: 300px;
+  width: 300px;
+  object-fit: cover;
+  object-position: left top;
+}

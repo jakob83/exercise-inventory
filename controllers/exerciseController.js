@@ -14,6 +14,7 @@ exports.usersListGET = async (req, res) => {
       exercises.push({
         exercise: row.exercise,
         category: row.category,
+        img: row.img,
         equipment: [row.equipment],
       });
     }

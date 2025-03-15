@@ -10,14 +10,18 @@ app.set('views', path.join(__dirname, 'views'));
 // and that the views folder holds .ejs files
 app.set('view engine', 'ejs');
 
-// setup, so that node/express knows, where the assets folder is (in this case /public)
-// in the public folder static files like css and html are stored
 const assetsPath = path.join(__dirname, 'public');
+app.use(express.static(assetsPath));
+
+// For images
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/', indexRouter);
 app.use('/exercises', exercisesRouter);
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log('listening on ' + PORT);

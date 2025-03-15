@@ -1,9 +1,19 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>exercise inventory</title>
+    <link rel="stylesheet" href="/index.css" />
+  </head>
+<body>
 <div class="exercices">
     <% if (locals.exercises) {%> <% exercises.forEach(exercise => { %>
-            <div class="exercice-container">
+            <div class="exercise-container">
                 <h3><%= exercise.exercise %></h3>
+                <img src="<%= exercise.img %>" class="img" alt="exercise">    
                 <p>Category: <%= exercise.category %></p>
                 <%- include("partials/equipmentList", {exercise: exercise}) %>
             </div>
     <% }); %> <% } %>        
 </div>
+
+</body>

@@ -9,7 +9,8 @@ CREATE TABLE IF NOT EXISTS categories (
 CREATE TABLE IF NOT EXISTS exercises (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     name VARCHAR ( 255 ),
-    category_id INTEGER
+    category_id INTEGER,
+    img TEXT
 );
 
 CREATE TABLE IF NOT EXISTS equipment (
