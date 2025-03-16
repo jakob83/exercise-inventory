@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="/index.css">
 </head>
 <body>
-    <form action="new" method="post" class="new-exercise-form">
+    <form action="new" method="post" class="new-exercise-form" enctype="multipart/form-data">
         <label for="exercise">Exercise:</label>
         <input type="text" name="exercise" id="exercise" required>
         <label for="category">Category:</label>
@@ -18,7 +18,7 @@
             <% }) %>
         </select>
         <label for="img">Image:</label>
-        <input type="file" id="img">
+        <input type="file" id="img" name="img">
         <button type="submit">Submit</button>
     </form>
 </body>

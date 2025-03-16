@@ -1,5 +1,20 @@
 const { body, validationResult } = require('express-validator');
 const queries = require('../db/queries');
+const path = require('path');
+const multer = require('multer');
+const e = require('express');
+
+const storage = multer.diskStorage({
+  destination: './uploads/',
+  filename: (req, file, cb) => {
+    cb(
+      null,
+      file.fieldname + '-' + Date.now() + path.extname(file.originalname)
+    );
+  },
+});
+
+const upload = multer({ storage: storage });
 
 exports.exercisesGET = async (req, res) => {
   const rows = await queries.getCompleteExercises();
@@ -27,3 +42,18 @@ exports.exerciseNewGET = async (req, res) => {
   const eqRows = await queries.getEquipment();
   res.render('new', { categories: catRows, equipment: eqRows });
 };
+
+// Error Handling needed:
+exports.exerciseNewPOST = [
+  upload.single('img'),
+  async (req, res) => {
+    const { exercise, category, equipment } = req.body;
+    await queries.insertExercise(
+      exercise,
+      category,
+      equipment,
+      '/uploads/' + req.file.filename
+    );
+    res.redirect('/exercises');
+  },
+];

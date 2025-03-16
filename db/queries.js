@@ -16,5 +16,31 @@ async function getEquipment() {
   const { rows } = await pool.query(`SELECT name FROM equipment;`);
   return rows;
 }
+async function insertExercise(exercise, category, equipmentArr, imgUrl) {
+  const catId = await pool.query(
+    `SELECT id FROM categories WHERE name ILIKE('${category}')`
+  );
 
-module.exports = { getCompleteExercises, getCategories, getEquipment };
+  const exId = await pool.query(
+    'INSERT INTO exercises (name, category_id, img ) VALUES ($1, $2, $3) RETURNING id',
+    [exercise, catId.rows[0].id, imgUrl]
+  );
+
+  for (let i = 0; i < equipmentArr.length; i++) {
+    const equipment = equipmentArr[i];
+    const eqId = await pool.query(
+      `SELECT id FROM equipment WHERE name = '${equipment}'`
+    );
+    await pool.query(
+      `INSERT INTO exercises_equipment (exercise_id, equipment_id) VALUES ($1, $2)`,
+      [exId.rows[0].id, eqId.rows[0].id]
+    );
+  }
+}
+
+module.exports = {
+  getCompleteExercises,
+  getCategories,
+  getEquipment,
+  insertExercise,
+};
