@@ -38,9 +38,15 @@ async function insertExercise(exercise, category, equipmentArr, imgUrl) {
   }
 }
 
+async function insertEquipment(equipment) {
+  console.log(equipment);
+  await pool.query(`INSERT INTO equipment (name) VALUES ($1)`, [equipment]);
+}
+
 module.exports = {
   getCompleteExercises,
   getCategories,
   getEquipment,
   insertExercise,
+  insertEquipment,
 };

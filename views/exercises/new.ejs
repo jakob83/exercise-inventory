@@ -2,6 +2,9 @@
     <link rel="stylesheet" href="/index.css">
 </head>
 <body>
+    <% if(locals.err){ %>
+        <p><%= err %></p>
+    <% } %>
     <form action="new" method="post" class="new-exercise-form" enctype="multipart/form-data">
         <label for="exercise">Exercise:</label>
         <input type="text" name="exercise" id="exercise" required>

@@ -1,0 +1,13 @@
+<head>
+    <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <% if(locals.err){ %>
+            <p><%= err %></p>
+    <% } %>
+    <form action="new" method="post" class="new-equipment-form" >
+        <label for="equipment">Equipment:</label>
+        <input type="text" name="equipment" id="equipment" required>
+        <button type="submit">Submit</button>
+    </form>
+</body>

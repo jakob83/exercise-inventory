@@ -17,7 +17,8 @@ body {
   object-position: left top;
 }
 
-.new-exercise-form {
+.new-exercise-form,
+.new-equipment-form {
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -27,16 +28,19 @@ body {
   transform: translate(-50%);
 }
 
-.new-exercise-form input {
+.new-exercise-form input,
+.new-equipment-form input {
   padding: 10px 10px;
   font-size: 1rem;
 }
 
-.new-exercise-form select {
+.new-exercise-form select,
+.new-equipment-form select {
   padding: 10px 10px;
   font-size: 1rem;
 }
-.new-exercise-form button {
+.new-exercise-form button,
+.new-equipment-form button {
   padding: 10px 30px;
   font-size: 1rem;
   align-self: center;

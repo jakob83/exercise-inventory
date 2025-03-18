@@ -11,7 +11,7 @@
                 <h3><%= exercise.exercise %></h3>
                 <img src="<%= exercise.img %>" class="img" alt="exercise">    
                 <p>Category: <%= exercise.category %></p>
-                <%- include("partials/equipmentList", {exercise: exercise}) %>
+                <%- include("../partials/equipmentList", {exercise: exercise}) %>
             </div>
     <% }); %> <% } %>        
 </div>
