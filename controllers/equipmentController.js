@@ -19,14 +19,11 @@ exports.equipmentNewPOST = [
     .isLength({ max: 20 })
     .withMessage('Data too long'),
   async (req, res, next) => {
-    console.log(req.body); // is {}
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      console.log(errors.errors[0].msg);
       return next(errors.errors);
     }
     const { equipment } = req.body;
-    console.log(req.body);
     try {
       await queries.insertEquipment(equipment);
       res.redirect('/equipment');
@@ -35,7 +32,6 @@ exports.equipmentNewPOST = [
     }
   },
   (err, req, res, next) => {
-    console.log(err);
     res.redirect(`/equipment/new?err=${err[0].msg}`);
   },
 ];

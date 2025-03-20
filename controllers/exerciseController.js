@@ -41,6 +41,7 @@ exports.exercisesGET = async (req, res) => {
       exercises[exercises.length - 1].equipment.push(row.equipment);
     } else {
       exercises.push({
+        id: row.exercise_id,
         exercise: row.exercise,
         category: row.category,
         img: row.img,
@@ -69,11 +70,17 @@ exports.exerciseNewPOST = [
   upload.single('img'),
   (req, res, next) => {
     const { exercise, category, equipment } = req.body;
+    console.log(req.body);
+    if (!Array.isArray(equipment)) {
+      req.body.equipment = [equipment];
+      console.log(req.body);
+    }
     if (!exercise || !category || equipment.length === 0) {
       return next(new Error('Please enter all the information'));
     } else if (!req.file) {
       return next(new Error('Please upload an image.'));
     }
+
     next();
   },
   async (req, res, next) => {
@@ -93,5 +100,42 @@ exports.exerciseNewPOST = [
   (err, req, res, next) => {
     console.log(err);
     res.redirect(`/exercises/new?err=${err.message}`);
+  },
+];
+
+exports.exerciseUpdateGET = async (req, res) => {
+  const { id } = req.params;
+  const exercise = await queries.getExerciseById(id);
+  const catRows = await queries.getCategories();
+  const eqRows = await queries.getEquipment();
+
+  res.render('exercises/update', {
+    exercise: exercise,
+    categories: catRows,
+    equipment: eqRows,
+  });
+};
+
+exports.exerciseUpdatePOST = [
+  upload.single('img'),
+  (req, res, next) => {
+    const { equipment } = req.body;
+    if (!Array.isArray(equipment)) {
+      req.body.equipment = [equipment];
+    }
+    next();
+  },
+  async (req, res) => {
+    const { exercise, category, equipment } = req.body;
+    const { id } = req.params;
+    const exerciseOld = await queries.getExerciseById(id);
+    let imgUrl = exerciseOld.img;
+    if (req.file) {
+      imgUrl = '/uploads/' + req.file.filename;
+    }
+    console.log(imgUrl);
+
+    queries.replaceExercise(id, exercise, category, equipment, imgUrl);
+    res.redirect('/exercises');
   },
 ];

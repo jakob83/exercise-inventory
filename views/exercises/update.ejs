@@ -1,0 +1,35 @@
+<head>
+  <link rel="stylesheet" href="/index.css" />
+</head>
+<body>
+  <% if(locals.err){ %>
+  <p><%= err %></p>
+  <% } %>
+  <form
+    action="/exercises/<%= exercise.exercise_id %>"
+    method="post"
+    class="new-exercise-form"
+    enctype="multipart/form-data"
+  >
+    <label for="exercise">Exercise:</label>
+    <input type="text" name="exercise" id="exercise" required value="<%= exercise.exercise %>"/>
+    <label for="category">Category:</label>
+    <select name="category" id="category" required>
+      <% categories.forEach((c) => { %>
+        <% if(c===exercise.category){ %>
+          <option value="<%= c.name %>" selected><%= c.name %></option>
+        <% } %>
+      <option value="<%= c.name %>"><%= c.name %></option>
+      <% }) %>
+    </select>
+    <label for="equipment">Equipment:</label>
+    <select name="equipment" id="equipment" multiple required>
+      <% equipment.forEach((e) => { %>
+      <option value="<%= e.name %>"><%= e.name %></option>
+      <% }) %>
+    </select>
+    <label for="img">Image:</label>
+    <input type="file" id="img" name="img" />
+    <button type="submit">Submit</button>
+  </form>
+</body>
